@@ -51,7 +51,7 @@ export class Movies {
   note: Number
 
   @CreateDateColumn({
-    name: "create_at",
+    name: "created_at",
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP(6)",
     onUpdate: "CURRENT_TIMESTAMP(6)",
@@ -59,7 +59,7 @@ export class Movies {
   createdAt: Date
 
   @UpdateDateColumn({
-    name: "create_at",
+    name: "updated_at",
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP(6)",
     onUpdate: "CURRENT_TIMESTAMP(6)",
