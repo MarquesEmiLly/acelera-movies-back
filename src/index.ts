@@ -39,15 +39,3 @@ start().catch((error) => {
   logger.error(error.message, error.stack)
   process.exit(1)
 })
-
-export const getMovies = (request, response) => {
-  return response.json({
-    movies: ["Thor", "Malevola", "As tranças do rei careca"],
-  })
-}
-export const getLogin = (request, response) => {
-  return response.json({
-    login: ["emilly@gmail"],
-    senha: ["12345"],
-  })
-}
