@@ -37,20 +37,36 @@ export const getMoviesId = async (request, response) => {
   }
 }
 
-export const postMoviesId = async (request, response) => {
-  const {
-    title,
-    subtitle,
-    resume,
-    releaseDate,
-    image,
-    director,
-    writer,
-    classification,
-    studio,
-    stars,
-  } = request.body
-  const movieRepository = getRepository(Movies)
-  const findMovie = await movieRepository.insert
-  return response.json(findMovie)
+export const postMovies = async (request, response) => {
+  try {
+    const {
+      title,
+      subtitle,
+      resume,
+      releaseDate,
+      image,
+      director,
+      writer,
+      classification,
+      studio,
+      note,
+    } = request.body
+    const movieRepository = getRepository(Movies)
+    const findMovie = movieRepository.create({
+      title,
+      subtitle,
+      resume,
+      releaseDate,
+      image,
+      director,
+      writer,
+      classification,
+      studio,
+      note,
+    })
+    const saveMovies = await movieRepository.save(findMovie)
+    return response.status(200).json(saveMovies)
+  } catch (error) {
+    return response.status(500).json(error)
+  }
 }

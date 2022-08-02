@@ -3,7 +3,7 @@ import {
   itsWorks,
   getMovies,
   getMoviesId,
-  postMoviesId,
+  postMovies,
 } from "@controllers/todo"
 import { getLogin } from "@controllers/todo"
 
@@ -13,5 +13,5 @@ export const defineRoutes = (app) => {
   app.get("/movies", getMovies)
   app.get("/movies/:id", getMoviesId)
   app.get("/login", getLogin)
-  app.post("/movies", postMoviesId)
+  app.post("/movies", postMovies)
 }
