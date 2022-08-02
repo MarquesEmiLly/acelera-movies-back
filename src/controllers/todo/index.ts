@@ -18,11 +18,12 @@ export const getMovies = async (request, response) => {
     return response.status(500).json(error)
   }
 }
-export const getLogin = (request, response) => {
-  return response.json({
-    login: ["emilly"],
-    senha: ["senha333"],
-  })
+export const getLogin = async (request, response) => {
+  try {
+    return response.status(200).json()
+  } catch (error) {
+    return response.status(500).json(error)
+  }
 }
 
 export const getMoviesId = async (request, response) => {

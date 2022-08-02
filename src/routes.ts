@@ -7,4 +7,5 @@ export const defineRoutes = (app) => {
   app.get("/movies", getMovies)
   app.get("/movies/:id", getMoviesId)
   app.get("/login", getLogin)
+  app.post("/movies", getMoviesId)
 }
