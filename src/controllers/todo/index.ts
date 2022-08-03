@@ -70,3 +70,58 @@ export const postMovies = async (request, response) => {
     return response.status(500).json(error)
   }
 }
+
+export const deleteMoviesId = async (request, response) => {
+  try {
+    const { id } = request.params
+    const movieRepository = getRepository(Movies)
+    const deleteMovie = await movieRepository.delete(id)
+
+    return response.status(200).json(deleteMovie)
+  } catch (error) {
+    return response.status(500).json(error)
+  }
+}
+export const updateMovies = async (request, response) => {
+  try {
+    const {
+      title,
+      subtitle,
+      resume,
+      releaseDate,
+      image,
+      director,
+      writer,
+      classification,
+      studio,
+      note,
+    } = request.body
+    const { id } = request.params
+    const updateMoviesId = getRepository(Movies)
+    const movie = await updateMoviesId.findOne(id)
+    movie.title = title
+
+    movie.subtitle = subtitle
+
+    movie.resume = resume
+
+    movie.releaseDate = releaseDate
+
+    movie.image = image
+
+    movie.director = director
+
+    movie.writer = writer
+
+    movie.classification = classification
+
+    movie.studio = studio
+
+    movie.note = note
+
+    const result = await updateMoviesId.save(movie)
+    return response.status(200).json(result)
+  } catch (error) {
+    return response.status(500).json(error)
+  }
+}
