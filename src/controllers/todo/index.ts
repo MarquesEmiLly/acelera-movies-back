@@ -19,10 +19,16 @@ export const getMovies = async (request, response) => {
     return response.status(500).json(error)
   }
 }
-export const getLogin = async (request, response) => {
-  const userRepository = getRepository(User)
-  const findUser = await userRepository.find()
-  return response.json(findUser)
+
+export const Login = async (request, response) => {
+  const { saveLogin, password } = request.body
+  if (saveLogin && password === "banana") {
+    // return response.json({auth: true, message:"logado com sucesso"})
+    return response.json(Movies)
+  }
+  //const userRepository = getRepository(User)
+  //const findUser = await userRepository.find()
+  return response.json({ message: "não foi feito login" })
 }
 
 export const getMoviesId = async (request, response) => {
@@ -82,6 +88,7 @@ export const deleteMoviesId = async (request, response) => {
     return response.status(500).json(error)
   }
 }
+
 export const updateMovies = async (request, response) => {
   try {
     const {
@@ -99,26 +106,36 @@ export const updateMovies = async (request, response) => {
     const { id } = request.params
     const updateMoviesId = getRepository(Movies)
     const movie = await updateMoviesId.findOne(id)
-    movie.title = title
-
-    movie.subtitle = subtitle
-
-    movie.resume = resume
-
-    movie.releaseDate = releaseDate
-
-    movie.image = image
-
-    movie.director = director
-
-    movie.writer = writer
-
-    movie.classification = classification
-
-    movie.studio = studio
-
-    movie.note = note
-
+    if (title) {
+      movie.title = title
+    }
+    if (subtitle) {
+      movie.subtitle = subtitle
+    }
+    if (resume) {
+      movie.resume = resume
+    }
+    if (releaseDate) {
+      movie.releaseDate = releaseDate
+    }
+    if (image) {
+      movie.image = image
+    }
+    if (director) {
+      movie.director = director
+    }
+    if (writer) {
+      movie.writer = writer
+    }
+    if (classification) {
+      movie.classification = classification
+    }
+    if (studio) {
+      movie.studio = studio
+    }
+    if (note) {
+      movie.note = note
+    }
     const result = await updateMoviesId.save(movie)
     return response.status(200).json(result)
   } catch (error) {

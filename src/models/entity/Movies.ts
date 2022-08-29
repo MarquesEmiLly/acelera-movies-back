@@ -26,8 +26,8 @@ export class Movies {
   @Column({ name: "image", type: "varchar" })
   image: String
 
-  @Column({ name: "releaseDate", type: "timestamptz" })
-  releaseDate: Date
+  @Column({ name: "releaseDate", type: "varchar" })
+  releaseDate: String
 
   @Column({ name: "director", type: "varchar" })
   director: String
@@ -47,8 +47,8 @@ export class Movies {
   @Column({ name: "awards", type: "varchar", nullable: true })
   awards: String
 
-  @Column({ name: "note", type: "int" })
-  note: Number
+  @Column({ name: "note", type: "varchar" })
+  note: String
 
   @CreateDateColumn({
     name: "created_at",
