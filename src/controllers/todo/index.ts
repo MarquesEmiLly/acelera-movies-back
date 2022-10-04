@@ -19,16 +19,27 @@ export const getMovies = async (request, response) => {
     return response.status(500).json(error)
   }
 }
-
+/*
 export const Login = async (request, response) => {
   const { saveLogin, password } = request.body
   if (saveLogin && password === "banana") {
-    // return response.json({auth: true, message:"logado com sucesso"})
-    return response.json(Movies)
+    return response.json({ auth: true, message: "logado com sucesso" })
+    // return response.json(Movies)
   }
-  //const userRepository = getRepository(User)
-  //const findUser = await userRepository.find()
+  const userRepository = getRepository(User)
+  const findUser = await userRepository.find()
+  return findUser
   return response.json({ message: "não foi feito login" })
+  */
+export const Login = async (request, response) => {
+  const requisição = request.body
+  if (
+    requisição.nome === "emillymarques96622@gmail.com" ||
+    requisição.senha === "banana"
+  ) {
+    return response.json({ Message: "veio algo", auth: true })
+  }
+  return response.json({ Message: "não veio nada", auth: false })
 }
 
 export const getMoviesId = async (request, response) => {
@@ -47,27 +58,33 @@ export const postMovies = async (request, response) => {
   try {
     const {
       title,
+      gender,
+      classification,
       subtitle,
-      resume,
-      releaseDate,
       image,
+      releaseDate,
       director,
       writer,
-      classification,
       studio,
+      actor,
+      resume,
+      awards,
       note,
     } = request.body
     const movieRepository = getRepository(Movies)
     const findMovie = movieRepository.create({
       title,
+      gender,
+      classification,
       subtitle,
-      resume,
-      releaseDate,
       image,
+      releaseDate,
       director,
       writer,
-      classification,
       studio,
+      actor,
+      resume,
+      awards,
       note,
     })
     const saveMovies = await movieRepository.save(findMovie)

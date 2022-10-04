@@ -14,7 +14,7 @@ export const defineRoutes = (app) => {
   app.get("/todo", getTODO)
   app.get("/movies", getMovies)
   app.get("/movies/:id", getMoviesId)
-  app.post("/login", Login)
+  app.get("/login", Login)
   app.post("/movies", postMovies)
   app.delete("/movies/:id", deleteMoviesId)
   app.put("/movies/:id", updateMovies)
